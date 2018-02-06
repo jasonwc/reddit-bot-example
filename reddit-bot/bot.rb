@@ -1,11 +1,11 @@
 module RedditBot
   class Bot < SlackRubyBot::Bot
     help do
-      title 'Your Bots Name'
-      desc 'This is where you would put documentation about your bot'
+      title 'Reddit Bot'
+      desc 'Grabs posts from Reddit!'
 
-      command 'command' do
-        desc 'This is where you would put documentation about your command!'
+      command 'reddit' do
+        desc 'Returns back the top 5 posts on /r/all'
       end
     end
   end
