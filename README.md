@@ -1,5 +1,7 @@
 # Reddit Bot
 
+![](./example.gif)
+
 An example bot for my [talk](https://github.com/jasonwc/i-for-one-welcome-our-new-robot-overlords) at the Downtown Utah Ruby User Group
 
 The bot responds to `@reddit-bot reddit :subreddit [:hot|:new|:top|:rising|:controversial]`
@@ -9,7 +11,9 @@ The bot responds to `@reddit-bot reddit :subreddit [:hot|:new|:top|:rising|:cont
 - Checkout `1-fetching` if you want to see the bot grabbing things from /r/all
 - Checkout `2-subreddits` if you want to see the bot grabbing things from a particular subreddit
 - Checkout `3-sorting` if you want to see the bot sorting posts
-- Checkout `4-formatting` if you want to see the bot formatting the messages for slack 
+- Checkout `4-formatting` if you want to see the bot formatting the messages for slack
+- Checkout `5-error-handling` if you want to see the bot handling errors appropriately
+- Checkout `6-progress-indicator` if you want to see the bot indicate to the user that its processing
 
 ## Quick Start
 
