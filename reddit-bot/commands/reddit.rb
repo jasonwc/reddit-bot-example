@@ -14,6 +14,14 @@ module RedditBot
         # Ensure we don't try to pass an invalid sort order
         sort_by = ['hot', 'controversial', 'top', 'rising', 'new'].include?(sort_by) ? sort_by : 'hot'
 
+        # Add an hourglass to indicate that we're processing
+        client.web_client.reactions_add(
+          name: :hourglass_flowing_sand,
+          channel: data.channel,
+          timestamp: data.ts,
+          as_user: true
+        )
+
         # Get the data from Reddit and format as JSON
         uri = URI("https://www.reddit.com/r/#{subreddit}/#{sort_by}.json")
         response = JSON.parse(Net::HTTP.get(uri))
@@ -31,7 +39,7 @@ module RedditBot
               client.say(channel: data.channel, text: "Oops! Looks like we got an unknown error. Try again!")
           end
         else
-          # # Grab the first 3 posts, and get the information we care about
+          # Grab the first 3 posts, and get the information we care about
           posts = response['data']['children'].first(3).map do |post|
             {
               url: post['data']['url'],
@@ -84,6 +92,21 @@ module RedditBot
           # Message the channel with a formatted message using the web client
           client.web_client.chat_postMessage(channel: data.channel, as_user: true, **message)
         end
+
+        # Remove the hourglass and add a thumbs up to indicate that we completed the command
+        client.web_client.reactions_remove(
+          name: :hourglass_flowing_sand,
+          channel: data.channel,
+          timestamp: data.ts,
+          as_user: true
+        )
+
+        client.web_client.reactions_add(
+          name: :thumbsup,
+          channel: data.channel,
+          timestamp: data.ts,
+          as_user: true
+        )
       end
     end
   end
